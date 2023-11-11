@@ -13,10 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    inputs:
-      number:
-        required: true
-        type: integer
+    env:
+      INPUT_NUMBER: ${{ github.event.inputs.number }}
 
     steps:
       - name: Checkout code
@@ -33,4 +31,5 @@ jobs:
           pip install flake8 pytest
 
       - name: Run Fibonacci script
-        run: python fibonacci.py ${{ github.event.inputs.number }}
+        run: python fibonacci.py
+
