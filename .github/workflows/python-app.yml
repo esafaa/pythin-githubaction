@@ -1,22 +1,19 @@
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-permissions:
-  contents: read
+  workflow_dispatch:
+    inputs:
+      number:
+        description: 'Enter a number'
+        required: true
+        type: string
 
 jobs:
-  build:
+  fibonacci:
     runs-on: ubuntu-latest
-
-    env:
-      INPUT_NUMBER: ${{ github.event.inputs.number }}
-
     steps:
+      - name: Convert input to integer
+        id: convert_input
+        run: echo "::set-output name=number::${{ github.event.inputs.number }}"
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -31,5 +28,5 @@ jobs:
           pip install flake8 pytest
 
       - name: Run Fibonacci script
-        run: python fibonacci.py ${{ env.INPUT_NUMBER }}
+        run: python fibonacci.py ${{ steps.convert_input.outputs.number }}
 
