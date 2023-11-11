@@ -1,20 +1,17 @@
 import sys
 
-def get_input():
-    try:
-        # Attempt to read input if running interactively
-        return int(input("How many terms? "))
-    except EOFError:
-        # Handle EOFError by providing a default value
-        print("No input provided. Using default value.")
-        return 5  # Change this to the desired default value
-
 def fibonacci(n):
-    # Implementation of the Fibonacci sequence calculation
-    # ...
+    fib_sequence = [0, 1]
+    for i in range(2, n):
+        fib_sequence.append(fib_sequence[i-1] + fib_sequence[i-2])
+    return fib_sequence
 
-# Get the number of terms either from user input or use a default value
-nterms = get_input()
+def main():
+    nterms = int(sys.argv[1]) if len(sys.argv) > 1 else 5  # Default to 5 if not provided
+    result = fibonacci(nterms)
+    print(f"Fibonacci sequence up to {nterms} terms: {result}")
 
-# Call your Fibonacci function with nterms
-fibonacci(nterms)
+if __name__ == "__main__":
+    main()
+
+
