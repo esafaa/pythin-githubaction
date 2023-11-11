@@ -33,6 +33,4 @@ jobs:
           pip install flake8 pytest
 
       - name: Run Fibonacci script
-        run: python fibonacci.py ${{ inputs.number }}
-
-
+        run: python fibonacci.py ${{ github.event.inputs.number }}
