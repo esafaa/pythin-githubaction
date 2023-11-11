@@ -31,5 +31,5 @@ jobs:
           pip install flake8 pytest
 
       - name: Run Fibonacci script
-        run: python fibonacci.py
+        run: python fibonacci.py ${{ env.INPUT_NUMBER }}
 
