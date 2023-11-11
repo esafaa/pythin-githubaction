@@ -1,25 +1,20 @@
-# Program to display the Fibonacci sequence up to n-th term
+import sys
 
-nterms = int(input("How many terms? "))
+def get_input():
+    try:
+        # Attempt to read input if running interactively
+        return int(input("How many terms? "))
+    except EOFError:
+        # Handle EOFError by providing a default value
+        print("No input provided. Using default value.")
+        return 5  # Change this to the desired default value
 
-# first two terms
-n1, n2 = 0, 1
-count = 0
+def fibonacci(n):
+    # Implementation of the Fibonacci sequence calculation
+    # ...
 
-# check if the number of terms is valid
-if nterms <= 0:
-   print("Please enter a positive integer")
-# if there is only one term, return n1
-elif nterms == 1:
-   print("Fibonacci sequence upto",nterms,":")
-   print(n1)
-# generate fibonacci sequence
-else:
-   print("Fibonacci sequence:")
-   while count < nterms:
-       print(n1)
-       nth = n1 + n2
-       # update values
-       n1 = n2
-       n2 = nth
-       count += 1
+# Get the number of terms either from user input or use a default value
+nterms = get_input()
+
+# Call your Fibonacci function with nterms
+fibonacci(nterms)
