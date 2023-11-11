@@ -13,12 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    inputs:
+      number:
+        required: true
+        type: integer
+       
     steps:
-      - name: Input number
-        id: get_number
-        run: echo "::set-output name=number::${{ github.event.inputs.number }}"
-        shell: bash
-
       - uses: actions/checkout@v3
 
       - name: Set up Python 3.10
@@ -32,5 +32,5 @@ jobs:
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Lint with flake8
-        run: python fibonacci.py ${{ steps.get_number.outputs.number }}
+      - name: Run Fibonacci script
+        run: python fibonacci.py ${{ inputs.number }}
